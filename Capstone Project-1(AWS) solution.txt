@@ -1,27 +1,51 @@
-*Capstone Project - 1 (AWS)
+                                               *Capstone Project(AWS)(Practical steps)-
+
 *Launching 2 PHP web servers- 
 *Steps-
-Provide name as server(say) -Select Linux 2023 AMI Select instance type as t2.micro- Proceed without any key pair- Do not change other configurations -Select number of instances as 2. Under advanced details- User data option, provide the below script- #!/bin/bash (enter) yum update-y (enter) yum install-y php7.4 (enter) systemctl start php7.4 (enter) systemctl enable php7.4 (enter) Launch instance -Rename the servers as server 1 and server 2 
+1.Provide name as server(say) -Select Linux 2023 AMI- Select instance type as t2.micro- Proceed without any key pair- Do not change other 
+  configurations -Select number of instances as 2
+2. Under advanced details- User data option, provide the below script- 
+  #!/bin/bash (enter) 
+  yum update-y (enter) 
+  yum install-y 
+  php7.4 (enter)
+  systemctl start php7.4 (enter) 
+  systemctl enable php7.4 (enter) 
+3. Launch instance -Rename the servers as server 1 and server 2 
 *Creating Auto scaling group (ASG)-
 *Steps-
-On the left panel-Auto scaling groups-Create Auto scaling group Provide name as ASG-demo(say) -Create a launch template- Provide name as ASG-LT(say) -Provide description as Auto scaling for web servers -Select Linux 2023 AMI- Do not include keypair in launch template -Instance type as t2.micro- Create launch template- Go to ASG -Select ASG-LT as launch template-Next Select all the AZ's to ensure high availability of servers- Next-Next-Next-Next-Next-Create ASG 
+1.On the left panel-Auto scaling groups-Create Auto scaling group-Provide name as ASG-demo(say) -Create a launch template- 
+  Provide name as ASG-LT(say) -Provide description as Auto scaling for web servers -Select Linux 2023 AMI- 
+  Do not include keypair in launch template -Instance type as t2.micro- Create launch template.
+2.Go to ASG -Select ASG-LT as launch template-Next -Select all the AZ's to ensure high availability of servers- Next-Next-Next-Next-Next-Create 
+  ASG 
 *Creating RDS server-
 *Steps-
-Go to RDS- Create Database (DB) -Select Standard Create method- Select Engine type (DB) as MySQL- Engine version as MySQL 8.0.35 -Select free-tier template -Under settings-DB instance identifier-Provide a suitable name  (say intel)- Master username as admin- Master password as intel123-Confirm it -Under instance configuration-select Burstable classes and type as db.t3.micro Do not change other details -Select public access as Yes- Create DB
+1.Go to RDS- Create Database (DB) -Select Standard Create method- Select Engine type (DB) as MySQL- Engine version as MySQL 8.0.35 -Select free-
+  tier template -Under settings-DB instance identifier-Provide a suitable name (say intel)- Master username as admin- Master password as intel123-
+  Confirm it -Under instance configuration-select Burstable classes and type as db.t3.micro- Do not change other details -Select public access as
+  Yes- Create DB
 *Accessing our MySQL DB-
 *Steps- 
-Install MySQL workbench tool to get access to database from client (user) side.
-To connect to our DB, we use its Endpoint URL. Click on database tab -Manage connections- Provide connection name as intel-server-connection- From the DB we created, copy the Endpoint URL and paste it in the Hostname -Provide master username as admin -Provide master password as intel123 -OK-OK Click on the connection name to open it 
+1.Install MySQL workbench tool to get access to database from client (user) side.
+  To connect to our DB, we use its Endpoint URL. Click on database tab -Manage connections- Provide connection name as intel-server-connection-
+2.From the DB we created, copy the Endpoint URL and paste it in the Hostname -Provide master username as admin -Provide master password as 
+  intel123 -OK-OK 
+3.Click on the connection name to open it. 
 *We successfully got access to our database (intel) 
 *Creating table inside our DB-
 *Suppose we create a data table of students- 
 *Steps-
-Click on create table- Provide table name as data- Provide 4 columns -Column 1 as serial numbers- Column 2 as student names -Column 3 as subject name- Column 4 as subject marks- Store values as 1.Ross in Maths as 88 2. Steven in AWS as 77 3. Edward in Science as 66 Create table 
+1.Click on create table- Provide table name as data- Provide 4 columns -Column 1 as serial numbers- Column 2 as student names -Column 3 as subject
+ name- Column 4 as subject marks- Store values as 1.Ross in Maths as 88 2. Steven in AWS as 77 3. Edward in Science as 66 
+2.Create table 
 *Allowing traffic from our web servers to our DB- 
 *Steps-
-Click on DB name (intel)- Under connectivity and security-Setup EC2 connection- Select any web server (say server 1) by matching instance ID -Continue and then setup
-*Allowing all traffic to our web servers 
+ Click on DB name (intel)- Under connectivity and security-Setup EC2 connection- Select any web server (say server 1) by matching instance ID -
+ Continue and then setup
+*Allowing all traffic to our web servers- 
 *Steps- 
-Select the servers one by one- Click on security group corresponding to the server only under security tab- Edit inbound rules- Select type as SSH, source as Anywhere IPV4 and CIDR as 0.0.0.0/0- Save rules
+ Select the servers one by one- Click on security group corresponding to the server only under security tab- Edit inbound rules- Select type as
+ SSH, source as Anywhere IPV4 and CIDR as 0.0.0.0/0- Save rules
 
 
